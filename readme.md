@@ -24,13 +24,21 @@ import React from "react"
 import useSmartValue from "use-smartvalue"
 
 function App() {
-  const value = useSmartValue({ initialValue: 0 })
+  const value = useSmartValue<number>({ initialValue: 0 })
+  const refValue = useSmartValue<number>({ initialValue: 0, useRef: true })
 
   return (
     <div>
+      <button
+        onClick={() => {
+          value.set((prev) => prev + 1)
+          refValue.set(refValue.get() + 5)
+        }}>
+        Increment
+      </button>
+      <button onClick={() => value.reset()}>reset</button>
       <p>Current Value: {value.get()}</p>
-      <button onClick={() => value.set((prev) => prev + 1)}>Increment</button>
-      <button onClick={() => value.reset()}>Reset</button>
+      <p>Ref Value: {refValue.get()}</p>
       <p>Initial Value: {value.getInitial()}</p>
     </div>
   )
