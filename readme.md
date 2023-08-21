@@ -17,6 +17,18 @@ npm install use-smartvalue
 
 ## Usage
 
+```tsx
+const value = useSmartValue({ initialValue: 0 })
+```
+
+### Using `useRef`
+
+If you want to use `useRef` instead of `useState`, you can pass it as an option:
+
+```tsx
+const value = useSmartValue({ initialValue: 0, useRef: true })
+```
+
 ### Basic Usage
 
 ```tsx
@@ -45,14 +57,6 @@ function App() {
 }
 
 export default App
-```
-
-### Using `useRef`
-
-If you want to use `useRef` instead of `useState`, you can pass it as an option:
-
-```tsx
-const value = useSmartValue({ initialValue: 0, useRef: true })
 ```
 
 ## API
