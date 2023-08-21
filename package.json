@@ -1,0 +1,36 @@
+{
+  "name": "use-smartvalue",
+  "version": "0.1.3",
+  "description": "A custom React hook to manage values with either useState or useRef.",
+  "main": "dist/useValue.js",
+  "type": "module",
+  "types": "dist/useSmartValue.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevOsamaIslam/use-smartvalue.git"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "useValue",
+    "useState",
+    "useRef"
+  ],
+  "author": "Osama Samarrai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DevOsamaIslam/use-smartvalue/issues"
+  },
+  "homepage": "https://github.com/DevOsamaIslam/use-smartvalue#readme",
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.20",
+    "typescript": "^5.1.6"
+  }
+}

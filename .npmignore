@@ -1,0 +1,11 @@
+# Ignore everything by default
+*
+
+# Whitelist the files and directories you want to include in the npm package
+!/dist/
+!/dist/*.*
+!/package.json
+!/readme.md
+
+# Ignore .map files inside dist
+/dist/*.map
