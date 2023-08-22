@@ -1,8 +1,8 @@
-import useSmartValue from "../../dist/useSmartValue"
+import { useSmartValue } from "../../dist/useSmartValue"
 
 function App() {
-  const value = useSmartValue<number>({ initialValue: 0 })
-  const refValue = useSmartValue<number>({ initialValue: 0, useRef: true })
+  const value = useSmartValue({ initialValue: 0 })
+  const refValue = useSmartValue({ initialValue: 0, useRef: true })
 
   return (
     <div>
