@@ -7,14 +7,16 @@ type UseValueOptions<T> = {
 
 type Updater<T> = (prevValue: T) => T
 
-type UseValueReturn<T> = {
+export type SmartValue<T> = {
   get: () => T
   set: (value: T | Updater<T>) => void
   getInitial: () => T
   reset: () => void
 }
 
-function useSmartValue<T>(options?: UseValueOptions<T>): UseValueReturn<T> {
+export const useSmartValue = <T>(
+  options?: UseValueOptions<T>
+): SmartValue<T> => {
   const { useRef: shouldUseRef = false, initialValue } = options || {}
 
   const initialRef = useRef(initialValue)
@@ -55,5 +57,3 @@ function useSmartValue<T>(options?: UseValueOptions<T>): UseValueReturn<T> {
     }
   }
 }
-
-export default useSmartValue
