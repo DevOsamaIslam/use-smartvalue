@@ -2,7 +2,7 @@
   "name": "use-smartvalue",
   "version": "0.1.6",
   "description": "A custom React hook to manage values with either useState or useRef.",
-  "main": "dist/useValue.js",
+  "main": "dist/useSmartValue.js",
   "type": "module",
   "types": "dist/useSmartValue.d.ts",
   "scripts": {
