@@ -50,14 +50,16 @@ function App() {
         Increment
       </button>
       <button onClick={() => value.reset()}>reset</button>
-      <p>Current Value: {value.get()}</p>
+      <button onClick={() => refValue.reset()}>
+        reset ref (does not cause a re-render)
+      </button>
+      <p>Value: {value.get()}</p>
       <p>Ref Value: {refValue.get()}</p>
       <p>Initial Value: {value.getInitial()}</p>
+      <p>Initial Ref Value: {refValue.getInitial()}</p>
     </div>
   )
 }
-
-export default App
 ```
 
 ## API
