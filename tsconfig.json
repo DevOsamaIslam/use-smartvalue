@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "module": "ESNext",
-    "target": "ES6",
+    "target": "ES5",
     "lib": ["dom", "esnext"],
     "moduleResolution": "node",
     "jsx": "react",

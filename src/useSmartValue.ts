@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useCallback, useMemo } from "react"
 
 type UseValueOptions<T> = {
   initialValue: T
@@ -18,42 +18,53 @@ export const useSmartValue = <T>(
   options?: UseValueOptions<T>
 ): SmartValue<T> => {
   const { useRef: shouldUseRef = false, initialValue } = options || {}
-
   const initialRef = useRef(initialValue)
 
   if (shouldUseRef) {
     const valueRef = useRef(initialValue)
 
-    return {
-      get: () => valueRef.current as T,
-      set: (value: T | Updater<T>) => {
+    const get = useCallback(() => valueRef.current as T, [valueRef])
+    const set = useCallback(
+      (value: T | Updater<T>) => {
         if (typeof value === "function") {
           valueRef.current = (value as Updater<T>)(valueRef.current as T)
         } else {
           valueRef.current = value
         }
       },
-      getInitial: () => initialRef.current as T,
-      reset: () => {
-        valueRef.current = initialRef.current
-      },
-    }
+      [valueRef]
+    )
+    const getInitial = useCallback(() => initialRef.current as T, [initialRef])
+    const reset = useCallback(() => {
+      valueRef.current = initialRef.current
+    }, [valueRef, initialRef])
+
+    return useMemo(
+      () => ({ get, set, getInitial, reset }),
+      [get, set, getInitial, reset]
+    )
   } else {
     const [value, setValue] = useState(initialValue)
 
-    return {
-      get: () => value as T,
-      set: (value: T | Updater<T>) => {
+    const get = useCallback(() => value as T, [value])
+    const set = useCallback(
+      (value: T | Updater<T>) => {
         if (typeof value === "function") {
           setValue((prev) => (value as Updater<T>)(prev as T))
         } else {
           setValue(value)
         }
       },
-      getInitial: () => initialRef.current as T,
-      reset: () => {
-        setValue(initialRef.current)
-      },
-    }
+      [setValue]
+    )
+    const getInitial = useCallback(() => initialRef.current as T, [initialRef])
+    const reset = useCallback(() => {
+      setValue(initialRef.current)
+    }, [setValue, initialRef])
+
+    return useMemo(
+      () => ({ get, set, getInitial, reset }),
+      [get, set, getInitial, reset]
+    )
   }
 }
